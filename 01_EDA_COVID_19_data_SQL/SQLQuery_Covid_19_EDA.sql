@@ -163,7 +163,7 @@ with PopVac as (
 	WHERE dea.continent is not null 
 )
 SELECT *, (RollingPeopleVaccinated/population)*100 AS RollingPercentageVaccinated
-from PopVac
+FROM PopVac
 
 
 -- Using Temp Table to perform calculation on partition by in previous query
@@ -183,13 +183,13 @@ Insert into #PercentPopulationVaccinated
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.Date) AS RollingPeopleVaccinated
 FROM PortfolioProject..CovidDeaths dea
-Join PortfolioProject..CovidVaccinations vac
+JOIN PortfolioProject..CovidVaccinations vac
 	ON dea.location = vac.location
-	and dea.date = vac.date
+	AND dea.date = vac.date
 
 
 SELECT *, (RollingPeopleVaccinated/Population)*100 RollingPercentageVaccinated
-From #PercentPopulationVaccinated
+FROM #PercentPopulationVaccinated
 
 
 --CONTINENT BREAKDOWN
@@ -227,9 +227,9 @@ Create View PercentPopulationVaccinated AS
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) AS RollingPeopleVaccinated
 FROM PortfolioProject..CovidDeaths dea
-Join PortfolioProject..CovidVaccinations vac
+JOIN PortfolioProject..CovidVaccinations vac
 	ON dea.location = vac.location
-	and dea.date = vac.date
+	AND dea.date = vac.date
 WHERE dea.continent is not null 
 
 
