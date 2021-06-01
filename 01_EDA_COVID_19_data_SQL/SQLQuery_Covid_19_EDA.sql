@@ -8,11 +8,11 @@ Will be exploring Covid-19 data, looking at infection, deaths and vacinations ac
 SELECT *
 FROM PortfolioProject..CovidDeaths
 WHERE continent is not null 
-order by 3,4
+ORDER BY 3,4
 
 SELECT *
 FROM PortfolioProject..CovidVaccinations
-order by 3,4
+ORDER BY 3,4
 
 
 -- Select Data for this analysis
